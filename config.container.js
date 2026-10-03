@@ -1,0 +1,1 @@
+window.CALCULATOR_API_BASE = "";

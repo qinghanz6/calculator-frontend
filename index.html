@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>算一下 · 计算器</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><span class="eyebrow">CALCULATOR</span><h1>算一下<span>。</span></h1><p>把复杂留给计算，把思路留给自己。</p></header>
+    <div class="layout">
+      <section class="card" aria-labelledby="calculator-title">
+        <h2 id="calculator-title">计算器</h2>
+        <form id="calculator-form">
+          <label for="expression">输入算式</label>
+          <input id="expression" autocomplete="off" spellcheck="false" maxlength="200" placeholder="例如 (1 + 2) * 3">
+          <div class="answer"><span>结果</span><output id="result" aria-live="polite">—</output></div>
+          <p id="message" class="message" role="status"></p>
+          <div class="keypad" aria-label="计算器按键">
+            <button type="button" data-action="clear" class="muted">AC</button><button type="button" data-key="(">(</button><button type="button" data-key=")">)</button><button type="button" data-action="backspace" aria-label="退格">⌫</button>
+            <button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="/" class="operator" aria-label="除">÷</button>
+            <button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="*" class="operator" aria-label="乘">×</button>
+            <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="-" class="operator" aria-label="减">−</button>
+            <button type="button" data-key="0">0</button><button type="button" data-key=".">.</button><button id="calculate" type="submit" class="equals" aria-label="计算">=</button><button type="button" data-key="+" class="operator" aria-label="加">+</button>
+          </div>
+        </form>
+        <p class="hint">支持括号、小数和正负号。Enter 计算，Esc 清空。<br>除法使用 16 位有效数字；乘法请明确输入 × 或 *。</p>
+      </section>
+      <section class="card history" aria-labelledby="history-title">
+        <div class="section-heading"><h2 id="history-title">计算历史</h2><button type="button" id="refresh">刷新</button></div>
+        <p id="history-status" class="hint" role="status">正在读取历史记录…</p>
+        <ul id="history-list"></ul>
+      </section>
+    </div>
+    <footer>每次成功计算都会保存。历史记录由后端数据库提供。</footer>
+  </main>
+</body>
+</html>
