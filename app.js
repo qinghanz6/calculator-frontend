@@ -12,7 +12,7 @@ let calculating = false;
 
 async function request(path, options = {}) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const timeout = setTimeout(() => controller.abort(), 120000);
   try {
     const response = await fetch(apiBase + path, {
       ...options, signal: controller.signal
@@ -38,7 +38,7 @@ function showMessage(text, isError = false) {
 
 async function loadHistory() {
   const version = ++historyRequest;
-  historyStatus.textContent = "正在读取…";
+  historyStatus.textContent = "正在读取…首次访问可能需要约一分钟唤醒服务，请稍候。";
   try {
     const data = await request("/api/history");
     if (version !== historyRequest) return;
@@ -97,7 +97,7 @@ document.getElementById("calculator-form").addEventListener("submit", async (eve
   calculating = true;
   calculateButton.disabled = true;
   result.textContent = "—";
-  showMessage("正在计算…");
+  showMessage("正在计算…如果服务正在唤醒，请稍候，不要重复提交。");
   try {
     const data = await request("/api/calculate", {
       method: "POST", headers: { "Content-Type": "application/json" },

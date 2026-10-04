@@ -4,13 +4,15 @@ HTML + CSS + 原生 JavaScript，无需 Node.js 构建。包含数字/运算符�
 
 ## 本地运行
 
-1. 启动后端，确认 `http://127.0.0.1:8080/api/hello` 可访问。
+1. 本地开发时将 `config.js` 的地址改为 `http://127.0.0.1:8080`，启动后端，确认 `http://127.0.0.1:8080/api/hello` 可访问。发布到 GitHub Pages 前恢复线上地址。
 2. 使用 VS Code Live Server 打开 index.html，端口 5500。
 3. 在网页输入 `(1+2)*3`，结果应为 9，历史自动更新。
 
 也可在安装 Python 后运行 `python -m http.server 5500 --bind 127.0.0.1`。不要通过 file:// 打开。
 
 ## 配置
+
+当前配置的线上后端为 `https://calculator-backend-n0sa.onrender.com`。Render 免费服务可能休眠，前端请求最多等待 120 秒，并显示等待提示。超时后先刷新历史确认是否保存，避免重复提交。
 
 `config.js` 中的 CALCULATOR_API_BASE 指定后端地址。本地为 `http://127.0.0.1:8080`；独立公网前端改成后端 HTTPS 地址，并在后端 ALLOWED_ORIGINS 中加入前端的源（协议+域名+端口，不带路径）。前后端同域反向代理时设为空字符串。
 
